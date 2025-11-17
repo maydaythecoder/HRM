@@ -1,0 +1,47 @@
+# Training configuration for Hierarchical Reasoning Model
+
+# Model architecture
+model:
+  embedding_dim: 256
+  hidden_dim: 128
+  num_predicate_classes: 10
+  num_theme_classes: 5
+  num_gcn_layers: 2
+  num_attention_heads: 8
+  dropout: 0.1
+
+# Training hyperparameters
+training:
+  batch_size: 8
+  num_epochs: 50
+  learning_rate: 1e-4
+  weight_decay: 1e-5
+  gradient_clip: 1.0
+  warmup_steps: 100
+
+# Loss weights (multi-task learning)
+loss:
+  fact_weight: 1.0
+  relation_weight: 1.0
+  conclusion_weight: 1.0
+
+# Data
+data:
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  num_workers: 4
+  pin_memory: true
+
+# Logging and checkpointing
+logging:
+  log_dir: "./logs"
+  checkpoint_dir: "./checkpoints"
+  save_every: 5
+  log_every: 10
+  use_wandb: false
+  wandb_project: "hrm-neural"
+
+# Device
+device: "cuda"  # or "cpu"
+
